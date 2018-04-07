@@ -9,8 +9,8 @@ var app = express();
 app.use(express.static(__dirname + '/../react-client/dist'));
 
 const binanceRest = new api.BinanceRest({
-    key: 'KbLMYUH3EfX7lrTFYNueX8e3g8P5SBIjYc93dwmsbBX2SlkddUzW3Q2vSoBt2tYy', // Get this from your account on binance.com
-    secret: 'k4uoHDDV6FPgNR9kdYFZVPkr8YlgSzZlpyBDyYM7l4hRDUjpf5326ureZFlZwSeG', // Same for this
+    key: process.env.BINANCE_KEY, // Get this from your account on binance.com
+    secret: process.env.BINANCE_SECRET, // Same for this
     timeout: 15000, // Optional, defaults to 15000, is the request time out in milliseconds
     recvWindow: 10000, // Optional, defaults to 5000, increase if you're getting timestamp errors
     disableBeautification: false,
@@ -97,7 +97,9 @@ app.post('/streamENG', function(req, res) {
   });
 });
 
-app.listen(3000, function() {
-  console.log('listening on port 3000!');
+const port = process.env.PORT || 3000;
+
+app.listen(port, function() {
+  console.log(`listening on port ${port}!`);
 });
 
