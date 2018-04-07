@@ -25,77 +25,12 @@ const binanceRest = new api.BinanceRest({
      * the request.
      */
 });
-var ether = 1;
-// binanceRest.tickerPrice('ETHUSDT',(err, data) => {
-//   ether = (data.price);
-// })
 const binanceWS = new api.BinanceWS(true);
 
+var ether = 1;
 binanceWS.onKline('ETHUSDT', '1m', (data) => {
   ether=data.kline.close;
 });
-
-
-// binanceWS.onKline('ETHUSDT', '1m', (data) => {
-//   console.log(data.kline.close);
-// });  
-
-// binanceWS.onDepthUpdate('BNBBTC', (data) => {
-//   console.log(data);
-// });
-
-// binanceWS.onAggTrade('BNBBTC', (data) => {
-//   console.log(data);
-// });
-
-
-
-// const streams = binanceWS.streams;
-
-// binanceWS.onCombinedStream([
-//         streams.depth('BNBBTC'),
-//         streams.kline('BNBBTC', '5m'),
-//         streams.trade('BNBBTC'),
-//         streams.ticker('BNBBTC')
-//     ],
-//     (streamEvent) => {
-//         switch(streamEvent.stream) {
-//             case streams.depth('BNBBTC'):
-//                 console.log('Depth event, update order book\n', streamEvent.data);
-//                 break;
-//             case streams.kline('BNBBTC', '5m'):
-//                 console.log('Kline event, update 5m candle display\n', streamEvent.data);
-//                 break;
-//             case streams.trade('BNBBTC'):
-//                 console.log('Trade event, update trade history\n', streamEvent.data);
-//                 break;
-//             case streams.ticker('BNBBTC'):
-//                 console.log('Ticker event, update market stats\n', streamEvent.data);
-//                 break;
-//         }
-//     }
-// );
-
-// app.post('/items', function(req, res) {
-//   // binanceRest.myTrades('TRXETH', (err, data) => {
-//   //   Promise.all(data)
-//   //   .then(values => {
-//   //     db.save(values);
-//   //   });
-//   // });
-//   binanceRest.account((err, data) => {
-//     let coinsWithValue = [];
-//     data.balances.forEach(function(coin) {
-//       if(coin.free != 0.00000000){
-//         coinsWithValue.push(coin);
-//       }
-//     })
-//     Promise.all(coinsWithValue)
-//     .then(values => {
-//       db.save(values);
-//     });
-//   });
-// });
 
 app.get('/items', function (req, res) {
   db.selectAllOwned(function callback(err, data){res.send(data)});
@@ -161,72 +96,6 @@ app.post('/streamENG', function(req, res) {
     db.saveENG(data.kline.close*ether);
   });
 });
-
-    // binanceWS.onKline('BTCUSDT', '1m', (data) => {
-    //   // console.log('Bitcoin price', data.kline.close);
-    // });
-    // binanceWS.onKline('XLMETH', '1m', (data) => {
-    //   // console.log('STELLAR price', data.kline.close*ether);
-    // });
-    // binanceWS.onKline('XRPETH', '1m', (data) => {
-    //   // console.log('Ripple price', data.kline.close*ether);
-    // });
-    // binanceWS.onKline('ENGETH', '1m', (data) => {
-    //   // console.log('Enigma price', data.kline.close*ether);
-    // });
-    // binanceWS.onKline('TRXETH', '1m', (data) => {
-    //   //console.log('Tron price', data.kline.close*ether);
-    // });
-    
-
-    // binanceWS.onKline('ENGBTC', '1m', (data) => {
-    //   console.log("ENG Coins", coins);
-    //   if (coins.length === 0) {
-    //     coins.push({'ENG':data.kline.close});
-    //     console.log('ENG', coins);
-    //   } else {
-    //     coins.splice(0,1,{'ENG':data.kline.close});
-    //   }
-    // });  
-    // binanceWS.onKline('XRPUSDT', '1m', (data) => {
-    //   if (coins.length === 1) {
-    //     coins.push({'XRP':data.kline.close});
-    //   } else {
-    //     coins.splice(1,1,{'ENG':data.kline.close});
-    //   }
-    // }); 
-    // binanceWS.onKline('TRXUSDT', '1m', (data) => {
-    //   if (coins.length === 2) {
-    //     coins.push({'TRX':data.kline.close});
-    //   } else {
-    //     coins.splice(2,1,{'ENG':data.kline.close});
-    //   }
-    // }); 
-    // binanceWS.onKline('BTCUSDT', '1m', (data) => {
-    //   if (coins.length === 3) {
-    //     coins.push({'BTC':data.kline.close});
-    //   } else {
-    //     coins.splice(3,1,{'ENG':data.kline.close});
-    //   }
-    // }); 
-    // binanceWS.onKline('ETHUSDT', '1m', (data) => {
-    //   if (coins.length === 4) {
-    //     coins.push({'ETH':data.kline.close});
-    //   } else {
-    //     coins.splice(4,1,{'ENG':data.kline.close});
-    //   }
-    // }); 
-    // binanceWS.onKline('XLMUSDT', '1m', (data) => {
-    //   if (coins.length === 5) {
-    //     coins.push({'XLM':data.kline.close});
-    //   } else {
-    //     coins.splice(5,1,{'ENG':data.kline.close});
-    //   }
-    // }); 
-    // binanceWS.onKline(['ETHUSDT', 'BTCUSDT', 'XRPUSDT'], '1m', (data) => {
-    //   coins.push({data.kline.close});
-    // });  
-
 
 app.listen(3000, function() {
   console.log('listening on port 3000!');
