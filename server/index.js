@@ -3,13 +3,9 @@ var bodyParser = require('body-parser');
 const api = require('binance');
 var io = require('socket.io');
 var MongoClient = require('mongodb').MongoClient;
-// UNCOMMENT THE DATABASE YOU'D LIKE TO USE
-// var items = require('../database-mysql');
 var db = require('../database-mongo');
-
 var app = express();
 
-//UNCOMMENT FOR REACT
 app.use(express.static(__dirname + '/../react-client/dist'));
 
 const binanceRest = new api.BinanceRest({
