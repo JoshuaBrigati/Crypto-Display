@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect('mongodb://JoshuaBrigati:Lobsterfest1013!@ds249325.mlab.com:49325/mvpbinance');
 
 var db = mongoose.connection;
 

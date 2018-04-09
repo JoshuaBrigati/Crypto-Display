@@ -17,19 +17,19 @@ Once the project moves into development, the press release can be used as a touc
  -->
  
 ## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+  > Binance Displayer
 
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  > Crypto traders that trade on Binance can put their api in and see whatever interest them
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  > This is used to display an easy to read and see page for coins the user is personally interested in, without having to go into the binance site and      try and find what they are looking for in all the mess of the website.
 
 ## Problem ##
-  > Describe the problem your product solves.
+  > Makes it it easier to see coins the user is interested in.
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  > It gets what you have and displays it in an easy to read place.
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
